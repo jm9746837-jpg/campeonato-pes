@@ -1,5 +1,6 @@
 import { Team, TeamStats } from '../types/league';
 
+
 interface StandingsTableProps {
   teams: Team[];
   stats: TeamStats[];

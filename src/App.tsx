@@ -43,7 +43,7 @@ function App() {
         
         if (home !== 'BYE' && away !== 'BYE') {
           newMatches.push({
-            id: `r${r+1}-m${i}`,
+            id: `r${r+1}-m${i}-${Date.now()}`,
             homeTeamId: home,
             awayTeamId: away,
             homeScore: null,
@@ -94,51 +94,14 @@ function App() {
 
   const handleRemoveTeam = (id: string) => {
     setTeams(prev => prev.filter(t => t.id !== id));
-    setMatches([]);
+    setMatches([]); // Limpa para forçar nova geração
   };
+
+  const totalRounds = matches.length > 0 ? Math.max(...matches.map(m => m.round)) : 0;
 
   return (
     <div className="min-h-screen bg-slate-50 p-4 md:p-8">
       <header className="mb-8 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Liga de Futebol Manager</h1>
-        <div className="bg-white p-2 rounded shadow text-sm">Times: {teams.length}</div>
-      </header>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 space-y-6">
-          <StandingsTable teams={teams} stats={stats} />
-          
-          {teams.length >= 2 && matches.length === 0 && (
-            <button onClick={() => generateMatches(teams)} className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold shadow-lg">
-              ⚽ Gerar Tabela de Jogos
-            </button>
-          )}
-
-          {matches.length > 0 && (
-            <RoundMatches 
-              matches={matches} 
-              teams={teams} 
-              currentRound={currentRound} 
-              onUpdateScore={handleUpdateScore} 
-            />
-          )}
-
-          {/* Navegação de Rodadas Original */}
-          {matches.length > 0 && (
-            <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow">
-              <button disabled={currentRound === 1} onClick={() => setCurrentRound(c => c - 1)} className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">Anterior</button>
-              <span className="font-bold">Rodada {currentRound}</span>
-              <button disabled={currentRound === Math.max(...matches.map(m => m.round))} onClick={() => setCurrentRound(c => c + 1)} className="px-4 py-2 bg-gray-200 rounded disabled:opacity-50">Próxima</button>
-            </div>
-          )}
-        </div>
-        
         <div>
-          <TeamManager teams={teams} onAddTeam={handleAddTeam} onRemoveTeam={handleRemoveTeam} />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default App;
+          <h1 className="text-2xl font-bold text-gray-900">Liga de Futebol Manager</h1>
+          <p className="text-sm text-gray-500">Gerencie sua liga e acompanhe a

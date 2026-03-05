@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+// Aqui dizemos ao código para buscar nas pastas novas que você criou
 import { Team, Match, TeamStats } from './types/league';
 import { initialTeams, initialMatches } from './data/initialData';
 import StandingsTable from './components/StandingsTable';

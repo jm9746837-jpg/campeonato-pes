@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { Team, Match, TeamStats } from './types/league';
-import { initialTeams, initialMatches } from './data/initialData';
+import { initialTeams, initialMatches } from './dados/initialData';
 import StandingsTable from './components/StandingsTable';
 import RoundMatches from './components/RoundMatches';
 import TeamManager from './components/TeamManager';

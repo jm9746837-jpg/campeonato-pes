@@ -1,7 +1,6 @@
 import { Match, Team } from '../types/league';
 import MatchScoreInput from './MatchScoreInput';
 
-interface RoundMatchesProps {
   matches: Match[];
   teams: Team[];
   currentRound: number;
